@@ -34,7 +34,7 @@ void Victory(bool is_first) {
     }
     str += "WIN";
 	std::wstring stemp = std::wstring(str.begin(), str.end());
-    MessageBox(hMainWnd, stemp.c_str(), _T("Win"), MB_OK);
+    MessageBox(hMainWnd, stemp.c_str(), _T("Победа"), MB_OK);
     EndDialog(hMainWnd, 0);
     DialogBox(NULL, _T("Ex4_Dlg"), HWND_DESKTOP, DlgProc);
 }
