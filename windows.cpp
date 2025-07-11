@@ -1,4 +1,5 @@
 #include "button.h"
+#include <memory>
 #include <Windows.h>
 #include <WindowsX.h>
 #include <string>
@@ -8,9 +9,9 @@ static int field_size = 15;
 HWND hMainWnd = 0;
 INT_PTR CALLBACK DlgProc(HWND hwd, UINT msg, WPARAM wp, LPARAM lp);
 
-static field* main_field = NULL;
-static field* InitMainWindow() {
-    return new field(field_size);
+static std::unique_ptr<field> main_field;
+static std::unique_ptr<field> InitMainWindow() {
+    return std::make_unique<field>(field_size);
 }
 
 int MakeXY(int z) {
@@ -46,7 +47,7 @@ void button::InitWindow() {
 INT_PTR CALLBACK DlgProc(HWND hwd, UINT msg, WPARAM wp, LPARAM /*lp*/) {
     switch (msg) {
     case WM_CLOSE:
-        delete main_field;
+        main_field.reset();
         EndDialog(hwd, 0);
         break;
     case WM_INITDIALOG:
@@ -70,7 +71,7 @@ INT_PTR CALLBACK DlgProc(HWND hwd, UINT msg, WPARAM wp, LPARAM /*lp*/) {
     return FALSE;
 }
 
-int APIENTRY WinMain(__in HINSTANCE hInst, __in_opt HINSTANCE /*hPrevInstance*/, __in_opt LPSTR /*lpCmdLine*/, __in int /*nShowCmd*/) {
+int APIENTRY WinMain(_In_ HINSTANCE hInst, _In_opt_ HINSTANCE /*hPrevInstance*/, _In_ LPSTR /*lpCmdLine*/, _In_ int /*nShowCmd*/) {
     DialogBox(hInst, _T("Ex4_Dlg"), HWND_DESKTOP, DlgProc);
     return 0;
 }
