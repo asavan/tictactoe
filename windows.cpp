@@ -2,8 +2,8 @@
 #include <Windows.h>
 #include <WindowsX.h>
 #include <string>
-static size_t button_size = 40;
-static size_t field_size = 15;
+static int button_size = 40;
+static int field_size = 15;
 HWND hMainWnd= 0;
 INT_PTR CALLBACK DlgProc(HWND hwd, UINT msg, WPARAM wp, LPARAM lp) ;
 
@@ -13,7 +13,7 @@ static field * InitMainWindow()
 	return new field(field_size);
 }
 
-int MakeXY (size_t z)
+int MakeXY (int z)
 {
 	return 5+z*button_size;
 }
@@ -45,7 +45,7 @@ hW = CreateWindow("button",NULL ,WS_CHILD|BS_PUSHBUTTON|WS_VISIBLE,
 				  MakeXY(i),MakeXY(j),button_size,button_size,hMainWnd,(HMENU)BN_ID,NULL,NULL);
 }
 
-INT_PTR CALLBACK DlgProc(HWND hwd, UINT msg, WPARAM wp, LPARAM lp)
+INT_PTR CALLBACK DlgProc(HWND hwd, UINT msg, WPARAM wp, LPARAM /*lp*/)
 {
 	switch (msg) 
 	{
@@ -75,7 +75,7 @@ INT_PTR CALLBACK DlgProc(HWND hwd, UINT msg, WPARAM wp, LPARAM lp)
 	return FALSE;
 }
 
-int APIENTRY WinMain(__in HINSTANCE hInst, __in_opt HINSTANCE hPrevInstance, __in_opt LPSTR lpCmdLine, __in int nShowCmd ) {
+int APIENTRY WinMain(__in HINSTANCE hInst, __in_opt HINSTANCE /*hPrevInstance*/, __in_opt LPSTR /*lpCmdLine*/, __in int /*nShowCmd*/) {
 	DialogBox(hInst, "Ex4_Dlg", HWND_DESKTOP, DlgProc );
 	return 0; 
 }

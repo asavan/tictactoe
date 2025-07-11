@@ -3,7 +3,7 @@
 class field;
 class button
 {
-	size_t i, j;
+	int i, j;
 	void paint_zero();
 	void paint_cross();
 	void InitWindow();
@@ -15,22 +15,13 @@ class button
 public:
 	int  get_symbol () const {return symbol;}
 	bool push(bool is_first);
-	button(size_t _j, size_t _i, field *_parent);
+	button(int _j, int _i, field *_parent);
 };
-class check
-	{
-			size_t i, j;
-			int state;
-			field * pole;
-			void set_default();
-		public:
-			bool operator()(size_t i, size_t j);
-	};
-	
+
 class field
 {
 	bool is_first;
-	size_t _size;
+	int _size;
 	//HWND hWf;
 	std::vector< std::vector<button> > arr;
 	bool ChekState(size_t j, size_t i) const;
@@ -38,9 +29,9 @@ class field
 	bool Go(int chek_symbol, size_t i, size_t j, bool (**change_i_j)(size_t &i, size_t &j, size_t size) ) const;
 public:
 	bool is_cross () {return is_first;}
-	field(size_t field_size);
+	field(int field_size);
 	void push(size_t ID);
-	size_t size() const {return _size;}
+	int size() const {return _size;}
 };
 
 
