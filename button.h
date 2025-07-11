@@ -11,7 +11,11 @@ class button {
     field* parent;
     int symbol;
     HWND hW; // comment if use in linux
+
+    button(const button& other) = delete;
+    button& operator=(const button& other) = delete;
   public:
+    button(button&& other) = default;
     int get_symbol() const { return symbol; }
     bool push(bool is_first);
     button(int _j, int _i, field* _parent);
@@ -28,9 +32,9 @@ class field {
             bool (**change_i_j)(size_t& i, size_t& j, size_t size)) const;
 
   public:
-    bool is_cross() { return is_first; }
     field(int field_size);
     void push(size_t ID);
+    bool is_cross() const { return is_first; }
     int size() const { return _size; }
 };
 

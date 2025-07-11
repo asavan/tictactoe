@@ -4,12 +4,12 @@
 #include <WindowsX.h>
 #include <string>
 #include <tchar.h>
-static int button_size = 40;
-static int field_size = 15;
+static constexpr int button_size = 40;
+static constexpr int field_size = 15;
 HWND hMainWnd = 0;
 INT_PTR CALLBACK DlgProc(HWND hwd, UINT msg, WPARAM wp, LPARAM lp);
 
-static std::unique_ptr<field> main_field;
+std::unique_ptr<field> main_field;
 static std::unique_ptr<field> InitMainWindow() {
     return std::make_unique<field>(field_size);
 }

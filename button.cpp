@@ -33,7 +33,8 @@ void field::push(size_t ID) {
     ID -= 1000;
     j = ID / 100;
     i = ID % 100;
-    if (!arr[j][i].push(is_first)) {
+    bool res = arr[j][i].push(is_first);
+    if (!res) {
         return;
     }
     if (ChekState(j, i)) {
@@ -47,9 +48,9 @@ field::field(int field_size) : _size(field_size) {
     for (int j = 0; j < _size; ++j) {
         std::vector<button> temp;
         for (int i = 0; i < _size; ++i) {
-            temp.push_back(button(j, i, this));
+            temp.emplace_back(j, i, this);
         }
-        arr.push_back(temp);
+        arr.push_back(std::move(temp));
     }
 }
 
