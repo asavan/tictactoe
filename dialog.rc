@@ -1,0 +1,41 @@
+#include <WinUser.h>
+Ex4_Menu MENU
+{
+ POPUP "&File"
+ {
+  MENUITEM "&Open...\tCtrl-O", 2
+  MENUITEM "&Save", 3
+  MENUITEM "Save &As...", 4
+  MENUITEM SEPARATOR
+  MENUITEM "&Hex view", 5, CHECKED GRAYED
+  MENUITEM "&Exit\tAlt-F4", 6
+ }
+ POPUP "&Edit"
+ {
+  MENUITEM "&Copy", 7
+  MENUITEM "&Paste", 8
+  POPUP "Popup"
+  {
+   MENUITEM "1", 9
+   MENUITEM "2", 10
+   MENUITEM "3", 11
+  }
+  MENUITEM SEPARATOR
+  MENUITEM "Search", 12
+ }
+ POPUP "&Help"
+ {
+  MENUITEM "&About...\tF1", 13
+ }
+}
+
+EX4_DLG DIALOG 0, 0, 610, 700
+STYLE   DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU//| WS_SIZEBOX
+CAPTION "Crosses and Zeros"
+//MENU EX4_MENU
+FONT 5, "Arial"
+//FONT 15, "Verdana"
+{
+}
+
+
